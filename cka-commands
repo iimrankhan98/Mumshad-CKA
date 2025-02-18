@@ -64,7 +64,21 @@ snapshot restore /opt/snapshot-pre-boot.db
 
 vim /etc/kubernetes/manifests/etcd.yaml and replace  /var/lib/etcd from  /var/lib/etcd-from-backup
 
-  volumes:
+containers:
+- command:
+  - etcd
+  - --advertise-client-urls=https://192.168.163.63:2379
+  - --cert-file=/etc/kubernetes/pki/etcd/server.crt
+  - --client-cert-auth=true
+  - --data-dir=/var/lib/etcd-from-backup
+
+volumeMounts:
+- mountPath: /var/lib/etcd-from-backup
+  name: etcd-data
+- mountPath: /etc/kubernetes/pki/etcd
+  name: etcd-certs
+
+volumes:
   - hostPath:
       path: /var/lib/etcd-from-backup
       type: DirectoryOrCreate
