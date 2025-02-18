@@ -22,9 +22,9 @@ kubectl drain node-1   [Existing pods removed and new pods will not schedule ]
 kebectl cordon node-2  [Existing pods continue running and new pods will not schedule]
 kubectl uncordon node-1[Schedule new pods again]
 
-### K8s Cluster Upgrade Process ######
+## Section 6: Cluster Maintenance
+# K8s Cluster Upgrade Process ##
 # Upgrade control-plane
-
 kubeadm upgrade plan
 vim /etc/apt/sources.list.d/kubernetes.list
 deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /
@@ -42,7 +42,6 @@ systemctl restart kubelet
  
 vim /etc/apt/sources.list.d/kubernetes.list
 deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /
-
 apt update
 apt-cache madison kubeadm
 apt-get install kubeadm=1.31.0-1.1
@@ -51,5 +50,6 @@ kubeadm upgrade node
 apt-get install kubelet=1.31.0-1.1
 systemctl daemon-reload
 systemctl restart kubelet
-########################################
+
+#
 
