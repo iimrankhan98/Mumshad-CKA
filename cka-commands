@@ -1,0 +1,55 @@
+## Mumshad CKA #############
+## Section 3: Sheduling #######
+kubectl get pods -o yaml > pod.yml
+kubectl get pods --show-labels
+kubectl get pods --selector  env=prod
+kubectl get all --selector env=prod
+
+kubectl taint nodes node-name  key=value:NoSchedule   [taint-effect, NoSchedule, NoExecute and PreferNoSchedule]
+kubectl  describe nodes node01  | grep Taint
+kubectl taint nodes <node-name> node-role.kubernetes.io/control-plane:NoSchedule- [Remove taint from master node]
+
+kubectl label nodes node-1  label-key=label-value
+
+kubectl create –f deployment-definition.yml
+kubectl get deployment
+kubectl set image deployment/myapp-deployment nginx=nginx:1.9.1
+kubectl rollout status deployment/myapp-deployment
+kubectl rollout history deployment/myapp-deployment
+kubectl rollout undo deployment/myapp-deployment
+
+kubectl drain node-1   [Existing pods removed and new pods will not schedule ]
+kebectl cordon node-2  [Existing pods continue running and new pods will not schedule]
+kubectl uncordon node-1[Schedule new pods again]
+
+### K8s Cluster Upgrade Process ######
+# Upgrade control-plane
+
+kubeadm upgrade plan
+vim /etc/apt/sources.list.d/kubernetes.list
+deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /
+apt update
+apt-cache madison kubeadm
+apt-get install kubeadm=1.31.0-1.1
+
+kubeadm upgrade plan v1.31.0
+kubeadm upgrade apply v1.31.0
+apt-get install kubelet=1.31.0-1.1
+systemctl daemon-reload
+systemctl restart kubelet
+
+# Upgrade the worker-node
+ 
+vim /etc/apt/sources.list.d/kubernetes.list
+deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /
+
+apt update
+apt-cache madison kubeadm
+apt-get install kubeadm=1.31.0-1.1
+# Upgrade the node 
+kubeadm upgrade node
+apt-get install kubelet=1.31.0-1.1
+systemctl daemon-reload
+systemctl restart kubelet
+########################################
+
