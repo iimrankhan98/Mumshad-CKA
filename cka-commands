@@ -58,4 +58,15 @@ sudo ETCDCTL_API=3 etcdctl snapshot save /opt/snapshot-pre-boot.db \
   --cert=/etc/kubernetes/pki/etcd/server.crt \
   --key=/etc/kubernetes/pki/etcd/server.key
 
+# Restore etcd from Backup
+ETCDCTL_API=3 etcdctl  --data-dir /var/lib/etcd-from-backup \
+snapshot restore /opt/snapshot-pre-boot.db
+
+vim /etc/kubernetes/manifests/etcd.yaml and replace  /var/lib/etcd from  /var/lib/etcd-from-backup
+
+  volumes:
+  - hostPath:
+      path: /var/lib/etcd-from-backup
+      type: DirectoryOrCreate
+    name: etcd-data
 
