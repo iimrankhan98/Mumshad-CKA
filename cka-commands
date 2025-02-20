@@ -84,4 +84,6 @@ volumes:
       type: DirectoryOrCreate
     name: etcd-data
 
-## Section 7: Security 
+## Section 7: Security
+openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text
+
