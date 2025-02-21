@@ -104,5 +104,6 @@ spec:
 kubectl apply -f akshay-csr.yaml
 kubectl get csr
 kubectl certificate approve akshay
+kubectl get csr agent-smith -o yaml
 kubectl certificate deny agent-smith
 kubectl delete csr agent-smith
