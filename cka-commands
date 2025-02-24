@@ -109,3 +109,4 @@ kubectl certificate deny agent-smith
 kubectl delete csr agent-smith
 
 kubectl config view
+kubectl config --kubeconfig=/root/my-kube-config current-context
