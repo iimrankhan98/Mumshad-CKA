@@ -107,3 +107,5 @@ kubectl certificate approve akshay
 kubectl get csr agent-smith -o yaml
 kubectl certificate deny agent-smith
 kubectl delete csr agent-smith
+
+kubectl config view
