@@ -113,4 +113,4 @@ kubectl config --kubeconfig=/root/my-kube-config current-context
 
 kubectl get role
 kubectl get rolebinding
-
+kubectl get pods --as dev-user
