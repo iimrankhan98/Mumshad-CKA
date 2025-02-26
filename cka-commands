@@ -116,3 +116,4 @@ kubectl get rolebinding
 kubectl get pods --as dev-user
 
 kubectl get ClusterRoles
+kubectl get ClusterRoleBindings
