@@ -121,3 +121,9 @@ kubectl describe clusterrolebinding cluster-admin
 
 kubectl create secret docker-registry private-reg-cred --docker-username=dock_user --docker-password=dock_password --docker-server=myprivateregistry.com:5000 --docker-email=dock_user@myprivateregistry.com
 kubectl get secret
+
+# Checking Namespaces in Linux & Docker #
+lsns  (Check namespaces on the host machine)
+docker inspect --format '{{.State.Pid}}' mycontainer
+lsns | grep <PID>
+
