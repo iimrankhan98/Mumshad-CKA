@@ -144,3 +144,4 @@ spec:
 
 kubectl get networkpolicy
 kubectl describe netpol payroll
+
