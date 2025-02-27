@@ -127,3 +127,17 @@ lsns  (Check namespaces on the host machine)
 docker inspect --format '{{.State.Pid}}' mycontainer
 lsns | grep <PID>
 
+kubectl exec ubuntu-sleeper -- whoami
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-sleeper
+spec:
+  securityContext:
+    runAsUser: 1010
+  containers:
+  - name: ubuntu
+    image: ubuntu
+    command: ["sleep", "3600"]
+---
