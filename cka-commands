@@ -141,3 +141,6 @@ spec:
     image: ubuntu
     command: ["sleep", "3600"]
 ---
+
+kubectl get networkpolicy
+kubectl describe netpol payroll
