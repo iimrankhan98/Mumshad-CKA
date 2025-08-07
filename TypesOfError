@@ -3,5 +3,5 @@ kubectl get pods --show-labels
 1. ImagePullBackOff: [ pull access denied, repository does not exist or may require authorization]
 2. Pending State:    [ Not enough CPU/memory on available nodes, No matching node due to taints, node selectors, or node affinity ]
 3. OOMKilled (Out of Memory)  [The container exceeded its memory limit, The Node does not have enough memory ]
-4.
+4. CrashLoopBackOff  [The container starts, crashes, and Kubernetes retries in a loop, App crashes due to misconfiguration, missing files, DB not ready, etc.]
 5.
